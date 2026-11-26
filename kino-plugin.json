@@ -1,0 +1,40 @@
+{
+  "id": "susejing-hub",
+  "name": "Susejing Hub",
+  "version": "0.1.0",
+  "apiVersion": 20,
+  "entry": "plugin.js",
+  "icon": "icon.png",
+  "color": "#7C5CFF",
+  "description": "El centro de Susejing: todos tus plugins en un solo lugar. Mira cuáles tienes, instala los que faltan y ábrelos con un toque.",
+  "author": "Susejing",
+  "homepage": "https://github.com/Susejing/Susejing-Hub",
+  "hosts": [],
+  "capabilities": ["screen"],
+  "screen": {
+    "label": "Susejing Hub",
+    "labelEn": "Susejing Hub",
+    "icon": "apps",
+    "menuOpens": "screen",
+    "opensFrom": ["menu", "settings"],
+    "settingsButton": {
+      "label": "Abrir Susejing Hub",
+      "labelEn": "Open Susejing Hub"
+    }
+  },
+  "recommends": [
+    "Susejing/AniJing",
+    "Susejing/DoramasJing",
+    "Susejing/Susejing-Gallery",
+    "Susejing/Susejing-Themes",
+    "Susejing/kino-mangatrack",
+    "Susejing/kino-anitrack",
+    "Susejing/kino-anifeed",
+    "Susejing/kino-flixtrack",
+    "Susejing/Bilibili",
+    "Susejing/Tubekino",
+    "Susejing/Loop",
+    "Susejing/Facetrack",
+    "Susejing/catalogo-net"
+  ]
+}
