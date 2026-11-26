@@ -1,10 +1,7 @@
 // Susejing Hub v0.1.1 — Fase 1
 // Centro del ecosistema Susejing: catálogo propio, instalar / abrir.
-// Inspiración de flujo (solo idea): un panel de control; implementación y estilo propios.
+// Sin CATALOG//NET.
 
-/** @typedef {{ repo: string, id: string, name: string, blurbEs: string, blurbEn: string, category: string, accent: string }} HubPlugin */
-
-/** @type {HubPlugin[]} */
 const CATALOG = [
   {
     repo: "Susejing/AniJing",
@@ -64,8 +61,8 @@ const CATALOG = [
     repo: "Susejing/Susejing-Gallery",
     id: "susejing-gallery",
     name: "Susejing Gallery",
-    blurbEs: "Galería multi-fuente: wallpapers, galgames, Safe y 18+, favoritos y «Para temas».",
-    blurbEn: "Multi-source gallery: wallpapers, galgames, Safe & 18+, favorites and «For themes».",
+    blurbEs: "Galería multi-fuente: wallpapers, galgames, Safe y 18+, favoritos y para temas.",
+    blurbEn: "Multi-source gallery: wallpapers, galgames, Safe and 18+, favorites and for themes.",
     category: "style",
     accent: "#C77DFF",
   },
@@ -119,7 +116,7 @@ const CATALOG = [
 const CATEGORIES = [
   { id: "all", labelEs: "Todos", labelEn: "All" },
   { id: "video", labelEs: "Video", labelEn: "Video" },
-  { id: "style", labelEs: "Imagen y estilo", labelEn: "Image & style" },
+  { id: "style", labelEs: "Imagen y estilo", labelEn: "Image and style" },
   { id: "read", labelEs: "Lectura", labelEn: "Reading" },
   { id: "track", labelEs: "Tracking", labelEn: "Tracking" },
 ];
@@ -145,6 +142,13 @@ function isInstalled(installed, repo) {
   return false;
 }
 
+function pickGo(on, repo) {
+  if (on) {
+    return { go: { plugin: { repo: repo } } };
+  }
+  return { go: { installPlugin: { repo: repo } } };
+}
+
 function filterChip(cat, active, isEs) {
   const on = active === cat.id;
   return {
@@ -158,21 +162,13 @@ function filterChip(cat, active, isEs) {
 
 function pluginCard(p, on, isEs) {
   const status = on ? (isEs ? "Instalado" : "Installed") : (isEs ? "No instalado" : "Not installed");
-  const action = on
-    ? {
-        type: "ElevatedButton",
-        icon: "open_in_new",
-        labelText: isEs ? "Abrir" : "Open",
-        labelTextEn: "Open",
-        onPressed: { go: { plugin: { repo: p.repo } } },
-      }
-    : {
-        type: "ElevatedButton",
-        icon: "download",
-        labelText: isEs ? "Instalar" : "Install",
-        labelTextEn: "Install",
-        onPressed: { go: { installPlugin: { repo: p.repo } } },
-      };
+  const action = {
+    type: "ElevatedButton",
+    icon: on ? "open_in_new" : "download",
+    labelText: on ? (isEs ? "Abrir" : "Open") : (isEs ? "Instalar" : "Install"),
+    labelTextEn: on ? "Open" : "Install",
+    onPressed: pickGo(on, p.repo),
+  };
   return {
     type: "Card",
     key: "plug_" + p.id,
@@ -222,7 +218,7 @@ function buildScreen(state, installed) {
     {
       type: "Text",
       text: isEs
-        ? "Instalados " + installedCount + " de " + CATALOG.length + ". Toca Instalar o Abrir según lo que necesites."
+        ? "Instalados " + installedCount + " de " + CATALOG.length + ". Toca Instalar o Abrir segun lo que necesites."
         : installedCount + " of " + CATALOG.length + " installed. Tap Install or Open as needed.",
       style: "body",
       color: "muted",
@@ -240,7 +236,7 @@ function buildScreen(state, installed) {
   ].concat(
     cards.length
       ? cards
-      : [{ type: "Text", text: isEs ? "Nada en esta categoría." : "Nothing in this category.", style: "body", color: "muted" }]
+      : [{ type: "Text", text: isEs ? "Nada en esta categoria." : "Nothing in this category.", style: "body", color: "muted" }]
   );
   const quick = ["Susejing/AniJing", "Susejing/Susejing-Gallery", "Susejing/kino-mangatrack"];
   const quickChildren = [];
@@ -252,15 +248,13 @@ function buildScreen(state, installed) {
       type: "ActionChip",
       key: "q_" + p.id,
       labelText: on ? p.name : (isEs ? "Instalar " : "Install ") + p.name,
-      onPressed: on
-        ? { go: { plugin: { repo: p.repo } } }
-        : { go: { installPlugin: { repo: p.repo } } },
+      onPressed: pickGo(on, p.repo),
     });
   }
   if (quickChildren.length) {
     bodyChildren.splice(2, 0, {
       type: "Text",
-      text: isEs ? "Accesos rápidos" : "Quick access",
+      text: isEs ? "Accesos rapidos" : "Quick access",
       style: "caption",
       color: "muted",
     });
