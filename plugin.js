@@ -1,4 +1,4 @@
-// Susejing Hub v0.1.0 — Fase 1
+// Susejing Hub v0.1.1 — Fase 1
 // Centro del ecosistema Susejing: catálogo propio, instalar / abrir.
 // Inspiración de flujo (solo idea): un panel de control; implementación y estilo propios.
 
@@ -60,15 +60,6 @@ const CATALOG = [
     blurbEn: "Facebook videos in Kino.",
     category: "video",
     accent: "#1877F2",
-  },
-  {
-    repo: "Susejing/catalogo-net",
-    id: "catalogo-net",
-    name: "CATALOG//NET",
-    blurbEs: "Catálogo masivo de películas, series y anime.",
-    blurbEn: "Huge catalog of movies, series and anime.",
-    category: "video",
-    accent: "#2C3E50",
   },
   // —— Imágenes y estilo ——
   {
@@ -333,6 +324,7 @@ function buildScreen(state, installed) {
         ]
   );
 
+  // Accesos rápidos a los más usados
   const quick = ["Susejing/AniJing", "Susejing/Susejing-Gallery", "Susejing/kino-mangatrack"];
   const quickChildren = [];
   for (const repo of quick) {
@@ -346,7 +338,7 @@ function buildScreen(state, installed) {
       key: "q_" + p.id,
       labelText: on ? p.name : (isEs ? "Instalar " : "Install ") + p.name,
       onPressed: on
-        ? { go: { plugin: { repo: p.repo } } }
+        ? { go: { plugin: { repo: p.repo } }
         : { go: { installPlugin: { repo: p.repo } } },
     });
   }
