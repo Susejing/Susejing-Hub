@@ -6,7 +6,6 @@
 
 /** @type {HubPlugin[]} */
 const CATALOG = [
-  // —— Video ——
   {
     repo: "Susejing/AniJing",
     id: "anijing",
@@ -61,7 +60,6 @@ const CATALOG = [
     category: "video",
     accent: "#1877F2",
   },
-  // —— Imágenes y estilo ——
   {
     repo: "Susejing/Susejing-Gallery",
     id: "susejing-gallery",
@@ -80,7 +78,6 @@ const CATALOG = [
     category: "style",
     accent: "#7C5CFF",
   },
-  // —— Lectura ——
   {
     repo: "Susejing/kino-mangatrack",
     id: "mangatrack",
@@ -90,7 +87,6 @@ const CATALOG = [
     category: "read",
     accent: "#E8722A",
   },
-  // —— Tracking y feeds ——
   {
     repo: "Susejing/kino-anitrack",
     id: "anitrack",
@@ -137,7 +133,6 @@ function isEsLang() {
   }
 }
 
-/** @param {Record<string, unknown>|null|undefined} installed */
 function isInstalled(installed, repo) {
   if (!installed || typeof installed !== "object") return false;
   if (installed[repo] === true) return true;
@@ -157,180 +152,100 @@ function filterChip(cat, active, isEs) {
     key: "cat_" + cat.id,
     labelText: isEs ? cat.labelEs : cat.labelEn,
     selected: on,
-    onPressed: {
-      setState: { category: cat.id },
-    },
+    onPressed: { setState: { category: cat.id } },
   };
 }
 
-/**
- * @param {HubPlugin} p
- * @param {boolean} on
- * @param {boolean} isEs
- */
 function pluginCard(p, on, isEs) {
-  const status = on
-    ? isEs
-      ? "Instalado"
-      : "Installed"
-    : isEs
-      ? "No instalado"
-      : "Not installed";
-
+  const status = on ? (isEs ? "Instalado" : "Installed") : (isEs ? "No instalado" : "Not installed");
   const action = on
     ? {
         type: "ElevatedButton",
         icon: "open_in_new",
         labelText: isEs ? "Abrir" : "Open",
         labelTextEn: "Open",
-        onPressed: {
-          go: { plugin: { repo: p.repo } },
-        },
+        onPressed: { go: { plugin: { repo: p.repo } } },
       }
     : {
         type: "ElevatedButton",
         icon: "download",
         labelText: isEs ? "Instalar" : "Install",
         labelTextEn: "Install",
-        onPressed: {
-          go: { installPlugin: { repo: p.repo } },
-        },
+        onPressed: { go: { installPlugin: { repo: p.repo } } },
       };
-
   return {
     type: "Card",
     key: "plug_" + p.id,
-    children: [
-      {
-        type: "Column",
-        padding: 14,
-        gap: 8,
-        children: [
-          {
-            type: "Row",
-            mainAxisAlignment: "spaceBetween",
-            crossAxisAlignment: "center",
-            children: [
-              {
-                type: "Text",
-                text: p.name,
-                style: "h3",
-              },
-              {
-                type: "Text",
-                text: status,
-                style: "caption",
-                color: on ? "primary" : "muted",
-              },
-            ],
-          },
-          {
-            type: "Text",
-            text: isEs ? p.blurbEs : p.blurbEn,
-            style: "body",
-            color: "muted",
-          },
-          {
-            type: "Text",
-            text: p.repo,
-            style: "caption",
-            color: "muted",
-          },
-          action,
-        ],
-      },
-    ],
+    children: [{
+      type: "Column",
+      padding: 14,
+      gap: 8,
+      children: [
+        {
+          type: "Row",
+          mainAxisAlignment: "spaceBetween",
+          crossAxisAlignment: "center",
+          children: [
+            { type: "Text", text: p.name, style: "h3" },
+            { type: "Text", text: status, style: "caption", color: on ? "primary" : "muted" },
+          ],
+        },
+        { type: "Text", text: isEs ? p.blurbEs : p.blurbEn, style: "body", color: "muted" },
+        { type: "Text", text: p.repo, style: "caption", color: "muted" },
+        action,
+      ],
+    }],
   };
 }
 
-/**
- * @param {{ category?: string }} state
- * @param {Record<string, unknown>|null|undefined} installed
- */
 function buildScreen(state, installed) {
   const isEs = isEsLang();
   const category = state && state.category ? state.category : "all";
-
   const list = CATALOG.filter(function (p) {
     return category === "all" || p.category === category;
   });
-
   let installedCount = 0;
   for (const p of CATALOG) {
     if (isInstalled(installed, p.repo)) installedCount++;
   }
-
   const chips = {
     type: "Wrap",
     spacing: 8,
     runSpacing: 8,
-    children: CATEGORIES.map(function (c) {
-      return filterChip(c, category, isEs);
-    }),
+    children: CATEGORIES.map(function (c) { return filterChip(c, category, isEs); }),
   };
-
   const cards = list.map(function (p) {
     return pluginCard(p, isInstalled(installed, p.repo), isEs);
   });
-
   const bodyChildren = [
-    {
-      type: "Text",
-      text: isEs ? "Ecosistema Susejing" : "Susejing ecosystem",
-      style: "title",
-    },
+    { type: "Text", text: isEs ? "Ecosistema Susejing" : "Susejing ecosystem", style: "title" },
     {
       type: "Text",
       text: isEs
-        ? "Instalados " +
-          installedCount +
-          " de " +
-          CATALOG.length +
-          ". Toca Instalar o Abrir según lo que necesites."
-        : installedCount +
-          " of " +
-          CATALOG.length +
-          " installed. Tap Install or Open as needed.",
+        ? "Instalados " + installedCount + " de " + CATALOG.length + ". Toca Instalar o Abrir según lo que necesites."
+        : installedCount + " of " + CATALOG.length + " installed. Tap Install or Open as needed.",
       style: "body",
       color: "muted",
     },
     chips,
     {
       type: "Text",
-      text:
-        category === "all"
-          ? isEs
-            ? "Todos los plugins"
-            : "All plugins"
-          : isEs
-            ? CATEGORIES.find(function (c) {
-                return c.id === category;
-              }).labelEs
-            : CATEGORIES.find(function (c) {
-                return c.id === category;
-              }).labelEn,
+      text: category === "all"
+        ? (isEs ? "Todos los plugins" : "All plugins")
+        : (isEs
+            ? CATEGORIES.find(function (c) { return c.id === category; }).labelEs
+            : CATEGORIES.find(function (c) { return c.id === category; }).labelEn),
       style: "h3",
     },
   ].concat(
     cards.length
       ? cards
-      : [
-          {
-            type: "Text",
-            text: isEs ? "Nada en esta categoría." : "Nothing in this category.",
-            style: "body",
-            color: "muted",
-          },
-        ]
+      : [{ type: "Text", text: isEs ? "Nada en esta categoría." : "Nothing in this category.", style: "body", color: "muted" }]
   );
-
-  // Accesos rápidos a los más usados
   const quick = ["Susejing/AniJing", "Susejing/Susejing-Gallery", "Susejing/kino-mangatrack"];
   const quickChildren = [];
   for (const repo of quick) {
-    const p = CATALOG.find(function (x) {
-      return x.repo === repo;
-    });
+    const p = CATALOG.find(function (x) { return x.repo === repo; });
     if (!p) continue;
     const on = isInstalled(installed, repo);
     quickChildren.push({
@@ -342,7 +257,6 @@ function buildScreen(state, installed) {
         : { go: { installPlugin: { repo: p.repo } } },
     });
   }
-
   if (quickChildren.length) {
     bodyChildren.splice(2, 0, {
       type: "Text",
@@ -357,14 +271,13 @@ function buildScreen(state, installed) {
       children: quickChildren,
     });
   }
-
   return {
     type: "Scaffold",
     appBar: {
       type: "AppBar",
       mergeWithKinoBar: true,
       dense: true,
-      title: isEs ? "Susejing Hub" : "Susejing Hub",
+      title: "Susejing Hub",
       leading: {
         type: "IconButton",
         icon: "close",
@@ -374,14 +287,7 @@ function buildScreen(state, installed) {
     },
     body: {
       type: "SingleChildScrollView",
-      children: [
-        {
-          type: "Column",
-          padding: 16,
-          gap: 12,
-          children: bodyChildren,
-        },
-      ],
+      children: [{ type: "Column", padding: 16, gap: 12, children: bodyChildren }],
     },
   };
 }
@@ -390,18 +296,11 @@ export async function screenEvent(ctx) {
   const name = ctx && ctx.name;
   const state = (ctx && ctx.state) || {};
   const installed = (ctx && ctx.installed) || null;
-
   if (name === "open" || name === "state") {
     return {
-      state: {
-        category: state.category || "all",
-      },
-      screen: buildScreen(
-        { category: state.category || "all" },
-        installed
-      ),
+      state: { category: state.category || "all" },
+      screen: buildScreen({ category: state.category || "all" }, installed),
     };
   }
-
   return null;
 }
