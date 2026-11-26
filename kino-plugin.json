@@ -1,7 +1,7 @@
 {
   "id": "susejing-hub",
   "name": "Susejing Hub",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "apiVersion": 20,
   "entry": "plugin.js",
   "icon": "icon.png",
@@ -10,13 +10,18 @@
   "author": "Susejing",
   "homepage": "https://github.com/Susejing/Susejing-Hub",
   "hosts": [],
-  "capabilities": ["screen"],
+  "capabilities": [
+    "screen"
+  ],
   "screen": {
     "label": "Susejing Hub",
     "labelEn": "Susejing Hub",
     "icon": "apps",
     "menuOpens": "screen",
-    "opensFrom": ["menu", "settings"],
+    "opensFrom": [
+      "menu",
+      "settings"
+    ],
     "settingsButton": {
       "label": "Abrir Susejing Hub",
       "labelEn": "Open Susejing Hub"
@@ -34,7 +39,6 @@
     "Susejing/Bilibili",
     "Susejing/Tubekino",
     "Susejing/Loop",
-    "Susejing/Facetrack",
-    "Susejing/catalogo-net"
+    "Susejing/Facetrack"
   ]
 }
