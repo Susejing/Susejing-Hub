@@ -338,7 +338,7 @@ function buildScreen(state, installed) {
       key: "q_" + p.id,
       labelText: on ? p.name : (isEs ? "Instalar " : "Install ") + p.name,
       onPressed: on
-        ? { go: { plugin: { repo: p.repo } }
+        ? { go: { plugin: { repo: p.repo } } }
         : { go: { installPlugin: { repo: p.repo } } },
     });
   }
