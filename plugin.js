@@ -1,5 +1,5 @@
-// Susejing Hub v0.1.3 — Fase 1
-// Centro del ecosistema Susejing: catálogo propio, instalar / abrir.
+// Susejing Hub v0.2.0 — Fase 1.5
+// Centro del ecosistema Susejing: rejilla de plugins al estilo "Mis plugins".
 // Sin CATALOG//NET.
 
 const CATALOG = [
@@ -7,115 +7,104 @@ const CATALOG = [
     repo: "Susejing/AniJing",
     id: "anijing",
     name: "AniJing",
-    blurbEs: "Anime en español: muchas fuentes, fichas, episodios y extractores.",
-    blurbEn: "Anime in Spanish: many sources, details, episodes and extractors.",
+    blurbEs: "Anime en español: muchas fuentes, fichas y episodios.",
+    blurbEn: "Anime in Spanish: many sources, details and episodes.",
     category: "video",
-    accent: "#7C5CFF",
   },
   {
     repo: "Susejing/DoramasJing",
     id: "doramasjing",
     name: "DoramasJing",
-    blurbEs: "Doramas en latino y subtitulado: búsqueda, catálogo y episodios.",
-    blurbEn: "K-dramas in Latin Spanish and subbed: search, catalog and episodes.",
+    blurbEs: "Doramas en latino y subtitulado.",
+    blurbEn: "K-dramas in Latin Spanish and subbed.",
     category: "video",
-    accent: "#FF6B9D",
   },
   {
     repo: "Susejing/Bilibili",
     id: "bilibili",
     name: "Bilibili",
-    blurbEs: "Busca y explora videos de Bilibili.",
-    blurbEn: "Search and browse Bilibili videos.",
+    blurbEs: "Videos de Bilibili en Kino.",
+    blurbEn: "Bilibili videos in Kino.",
     category: "video",
-    accent: "#00A1D6",
   },
   {
     repo: "Susejing/Tubekino",
     id: "tubekino",
     name: "Tubekino",
-    blurbEs: "YouTube en Kino: búsqueda, calidad y sección propia.",
-    blurbEn: "YouTube in Kino: search, quality and its own section.",
+    blurbEs: "YouTube en Kino.",
+    blurbEn: "YouTube in Kino.",
     category: "video",
-    accent: "#FF0033",
   },
   {
     repo: "Susejing/Loop",
     id: "loop",
-    name: "Loop — TikTok",
-    blurbEs: "TikTok en Kino: destacados, canales y sin marca de agua.",
-    blurbEn: "TikTok in Kino: highlights, channels, no watermark.",
+    name: "Loop",
+    blurbEs: "TikTok en Kino.",
+    blurbEn: "TikTok in Kino.",
     category: "video",
-    accent: "#FE2C55",
   },
   {
     repo: "Susejing/Facetrack",
     id: "facetrack",
-    name: "FaceTrack — Facebook",
+    name: "FaceTrack",
     blurbEs: "Videos de Facebook en Kino.",
     blurbEn: "Facebook videos in Kino.",
     category: "video",
-    accent: "#1877F2",
   },
   {
     repo: "Susejing/Susejing-Gallery",
     id: "susejing-gallery",
-    name: "Susejing Gallery",
-    blurbEs: "Galería multi-fuente: wallpapers, galgames, Safe y 18+, favoritos y para temas.",
-    blurbEn: "Multi-source gallery: wallpapers, galgames, Safe and 18+, favorites and for themes.",
+    name: "Gallery",
+    blurbEs: "Galería multi-fuente y para temas.",
+    blurbEn: "Multi-source gallery and for themes.",
     category: "style",
-    accent: "#C77DFF",
   },
   {
     repo: "Susejing/Susejing-Themes",
     id: "susejing-themes",
-    name: "Susejing Themes",
-    blurbEs: "Paletas de marca Susejing y guía para armar tu tema con Gallery.",
-    blurbEn: "Susejing brand palettes and a guide to build your theme with Gallery.",
+    name: "Themes",
+    blurbEs: "Paletas Susejing y guía de temas.",
+    blurbEn: "Susejing palettes and theme guide.",
     category: "style",
-    accent: "#7C5CFF",
   },
   {
     repo: "Susejing/kino-mangatrack",
     id: "mangatrack",
     name: "MangaTrack",
-    blurbEs: "Manga en español en TV o teléfono, con AniList y varias fuentes.",
-    blurbEn: "Manga in Spanish on TV or phone, with AniList and several sources.",
+    blurbEs: "Manga en español.",
+    blurbEn: "Manga in Spanish.",
     category: "read",
-    accent: "#E8722A",
   },
   {
     repo: "Susejing/kino-anitrack",
     id: "anitrack",
     name: "AniTrack",
-    blurbEs: "Progreso de anime y manga en AniList y MyAnimeList.",
-    blurbEn: "Anime and manga progress on AniList and MyAnimeList.",
+    blurbEs: "Progreso en AniList y MAL.",
+    blurbEn: "Progress on AniList and MAL.",
     category: "track",
-    accent: "#02A9FF",
   },
   {
     repo: "Susejing/kino-flixtrack",
     id: "flixtrack",
     name: "FlixTrack",
-    blurbEs: "Historial de películas y series en Trakt y SIMKL.",
+    blurbEs: "Historial en Trakt y SIMKL.",
+    blurbEn: "History on Trakt and SIMKL.",
     category: "track",
-    accent: "#F59E0B",
   },
   {
     repo: "Susejing/kino-anifeed",
     id: "anifeed",
     name: "AniFeed",
-    blurbEs: "Noticias de anime y calendario de emisión semanal.",
-    blurbEn: "Anime news and weekly airing calendar.",
+    blurbEs: "Noticias y calendario de anime.",
+    blurbEn: "Anime news and airing calendar.",
     category: "track",
-    accent: "#34D399",
   },
 ];
 
 const CATEGORIES = [
   { id: "all", labelEs: "Todos", labelEn: "All" },
   { id: "video", labelEs: "Video", labelEn: "Video" },
-  { id: "style", labelEs: "Imagen y estilo", labelEn: "Image and style" },
+  { id: "style", labelEs: "Estilo", labelEn: "Style" },
   { id: "read", labelEs: "Lectura", labelEn: "Reading" },
   { id: "track", labelEs: "Tracking", labelEn: "Tracking" },
 ];
@@ -141,11 +130,8 @@ function isInstalled(installed, repo) {
   return false;
 }
 
-function pickGo(on, repo) {
-  if (on) {
-    return { go: { plugin: { repo: repo } } };
-  }
-  return { go: { installPlugin: { repo: repo } } };
+function iconUrl(repo) {
+  return "https://raw.githubusercontent.com/" + repo + "/HEAD/icon.png";
 }
 
 function filterChip(cat, active, isEs) {
@@ -159,111 +145,212 @@ function filterChip(cat, active, isEs) {
   };
 }
 
-function pluginCard(p, on, isEs) {
-  const status = on ? (isEs ? "Instalado" : "Installed") : (isEs ? "No instalado" : "Not installed");
-  const action = {
-    type: "ElevatedButton",
-    icon: on ? "open_in_new" : "download",
-    labelText: on ? (isEs ? "Abrir" : "Open") : (isEs ? "Instalar" : "Install"),
-    labelTextEn: on ? "Open" : "Install",
-    onPressed: pickGo(on, p.repo),
-  };
-  return {
-    type: "Card",
-    key: "plug_" + p.id,
-    children: [{
-      type: "Column",
-      padding: 14,
-      gap: 8,
+function pluginTile(p, on, isEs, index) {
+  const layers = [
+    {
+      type: "Image",
+      key: "icon_" + p.id,
+      url: iconUrl(p.repo),
+      w: 88,
+      h: 88,
+      radius: "large",
+      fit: "cover",
+      ...(on ? {} : { opacity: 0.55 }),
+    },
+  ];
+
+  if (!on) {
+    layers.push({
+      type: "Container",
+      key: "badge_" + p.id,
+      alignment: "bottomCenter",
+      padding: 4,
       children: [
         {
-          type: "Row",
-          mainAxisAlignment: "spaceBetween",
-          crossAxisAlignment: "center",
-          children: [
-            { type: "Text", text: p.name, style: "h3" },
-            { type: "Text", text: status, style: "caption", color: on ? "primary" : "muted" },
-          ],
+          type: "Text",
+          text: isEs ? "Instalar" : "Install",
+          style: "caption",
+          color: "primary",
+          textAlign: "center",
         },
-        { type: "Text", text: isEs ? p.blurbEs : p.blurbEn, style: "body", color: "muted" },
-        { type: "Text", text: p.repo, style: "caption", color: "muted" },
-        action,
       ],
-    }],
+    });
+  }
+
+  const icon = {
+    type: "Stack",
+    key: "stack_" + p.id,
+    w: 88,
+    h: 88,
+    children: layers,
+  };
+
+  const name = {
+    type: "Text",
+    key: "name_" + p.id,
+    text: p.name,
+    style: "caption",
+    textAlign: "center",
+    maxLines: 1,
+    ...(on ? {} : { color: "muted" }),
+  };
+
+  const status = {
+    type: "Text",
+    key: "st_" + p.id,
+    text: on ? (isEs ? "Listo" : "Ready") : (isEs ? "Falta" : "Missing"),
+    style: "caption",
+    textAlign: "center",
+    color: on ? "primary" : "muted",
+    maxLines: 1,
+  };
+
+  const tile = {
+    type: "Column",
+    key: "tile_" + p.id,
+    gap: 4,
+    crossAxisAlignment: "center",
+    children: [icon, name, status],
+  };
+
+  return {
+    type: "Card",
+    key: "card_" + p.id,
+    variant: "plain",
+    flush: true,
+    onTap: on
+      ? { go: { plugin: { repo: p.repo } } }
+      : { go: { installPlugin: { repo: p.repo } } },
+    children: [tile],
   };
 }
 
 function buildScreen(state, installed) {
   const isEs = isEsLang();
   const category = state && state.category ? state.category : "all";
+
   const list = CATALOG.filter(function (p) {
     return category === "all" || p.category === category;
   });
+
   let installedCount = 0;
   for (const p of CATALOG) {
     if (isInstalled(installed, p.repo)) installedCount++;
   }
+
   const chips = {
     type: "Wrap",
     spacing: 8,
     runSpacing: 8,
-    children: CATEGORIES.map(function (c) { return filterChip(c, category, isEs); }),
+    children: CATEGORIES.map(function (c) {
+      return filterChip(c, category, isEs);
+    }),
   };
-  const cards = list.map(function (p) {
-    return pluginCard(p, isInstalled(installed, p.repo), isEs);
+
+  const tiles = list.map(function (p, i) {
+    return pluginTile(p, isInstalled(installed, p.repo), isEs, i);
   });
-  const bodyChildren = [
-    { type: "Text", text: isEs ? "Ecosistema Susejing" : "Susejing ecosystem", style: "title" },
-    {
-      type: "Text",
-      text: isEs
-        ? "Instalados " + installedCount + " de " + CATALOG.length + ". Toca Instalar o Abrir segun lo que necesites."
-        : installedCount + " of " + CATALOG.length + " installed. Tap Install or Open as needed.",
-      style: "body",
-      color: "muted",
-    },
-    chips,
-    {
-      type: "Text",
-      text: category === "all"
-        ? (isEs ? "Todos los plugins" : "All plugins")
-        : (isEs
-            ? CATEGORIES.find(function (c) { return c.id === category; }).labelEs
-            : CATEGORIES.find(function (c) { return c.id === category; }).labelEn),
-      style: "h3",
-    },
-  ].concat(
-    cards.length
-      ? cards
-      : [{ type: "Text", text: isEs ? "Nada en esta categoria." : "Nothing in this category.", style: "body", color: "muted" }]
-  );
-  const quick = ["Susejing/AniJing", "Susejing/Susejing-Gallery", "Susejing/kino-mangatrack"];
+
+  const grid = {
+    type: "GridView",
+    key: "hubGrid",
+    columns: { compact: 3, medium: 4, expanded: 5 },
+    gap: 14,
+    children: tiles.length
+      ? tiles
+      : [
+          {
+            type: "Text",
+            text: isEs ? "Nada en esta categoría." : "Nothing in this category.",
+            style: "body",
+            color: "muted",
+          },
+        ],
+  };
+
+  const quickRepos = [
+    "Susejing/AniJing",
+    "Susejing/Susejing-Gallery",
+    "Susejing/kino-mangatrack",
+  ];
   const quickChildren = [];
-  for (const repo of quick) {
-    const p = CATALOG.find(function (x) { return x.repo === repo; });
+  for (const repo of quickRepos) {
+    const p = CATALOG.find(function (x) {
+      return x.repo === repo;
+    });
     if (!p) continue;
     const on = isInstalled(installed, repo);
     quickChildren.push({
       type: "ActionChip",
       key: "q_" + p.id,
-      labelText: on ? p.name : (isEs ? "Instalar " : "Install ") + p.name,
-      onPressed: pickGo(on, p.repo),
+      labelText: on ? p.name : (isEs ? "+ " : "+ ") + p.name,
+      onPressed: on
+        ? { go: { plugin: { repo: p.repo } } }
+        : { go: { installPlugin: { repo: p.repo } } },
     });
   }
-  if (quickChildren.length) {
-    bodyChildren.splice(2, 0, {
+
+  const bodyChildren = [
+    {
       type: "Text",
-      text: isEs ? "Accesos rapidos" : "Quick access",
+      text: isEs ? "Ecosistema Susejing" : "Susejing ecosystem",
+      style: "title",
+    },
+    {
+      type: "Text",
+      text: isEs
+        ? "Instalados " +
+          installedCount +
+          " de " +
+          CATALOG.length +
+          ". Toca un icono para abrir o instalar."
+        : installedCount +
+          " of " +
+          CATALOG.length +
+          " installed. Tap an icon to open or install.",
+      style: "body",
+      color: "muted",
+    },
+    {
+      type: "Text",
+      text: isEs ? "Accesos rápidos" : "Quick access",
       style: "caption",
       color: "muted",
-    });
-    bodyChildren.splice(3, 0, {
+    },
+    {
       type: "Wrap",
       spacing: 8,
       runSpacing: 8,
       children: quickChildren,
-    });
-  }
+    },
+    chips,
+    {
+      type: "Text",
+      text:
+        category === "all"
+          ? isEs
+            ? "Todos los plugins"
+            : "All plugins"
+          : isEs
+            ? CATEGORIES.find(function (c) {
+                return c.id === category;
+              }).labelEs
+            : CATEGORIES.find(function (c) {
+                return c.id === category;
+              }).labelEn,
+      style: "h3",
+    },
+    grid,
+    {
+      type: "Text",
+      text: isEs
+        ? "Tip: el estado Listo usa los 8 del manifiesto recommends. El resto se instala igual."
+        : "Tip: Ready status uses the 8 manifest recommends. Others install the same way.",
+      style: "caption",
+      color: "muted",
+    },
+  ];
+
   return {
     type: "Scaffold",
     appBar: {
@@ -280,7 +367,14 @@ function buildScreen(state, installed) {
     },
     body: {
       type: "SingleChildScrollView",
-      children: [{ type: "Column", padding: 16, gap: 12, children: bodyChildren }],
+      children: [
+        {
+          type: "Column",
+          padding: 16,
+          gap: 12,
+          children: bodyChildren,
+        },
+      ],
     },
   };
 }
@@ -301,7 +395,10 @@ export async function screenEvent(ctx) {
   if (name === "open" || name === "state") {
     return {
       state: { category: state.category || "all" },
-      screen: buildScreen({ category: state.category || "all" }, installed),
+      screen: buildScreen(
+        { category: state.category || "all" },
+        installed
+      ),
     };
   }
   return null;
