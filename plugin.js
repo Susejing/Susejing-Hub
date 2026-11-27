@@ -1,4 +1,4 @@
-// Susejing Hub v0.1.1 — Fase 1
+// Susejing Hub v0.1.3 — Fase 1
 // Centro del ecosistema Susejing: catálogo propio, instalar / abrir.
 // Sin CATALOG//NET.
 
@@ -98,7 +98,6 @@ const CATALOG = [
     id: "flixtrack",
     name: "FlixTrack",
     blurbEs: "Historial de películas y series en Trakt y SIMKL.",
-    blurbEn: "Movie and series history on Trakt and SIMKL.",
     category: "track",
     accent: "#F59E0B",
   },
@@ -284,6 +283,15 @@ function buildScreen(state, installed) {
       children: [{ type: "Column", padding: 16, gap: 12, children: bodyChildren }],
     },
   };
+}
+
+export async function screen(ctx) {
+  const installed = (ctx && ctx.installed) || null;
+  const state = (ctx && ctx.state) || {};
+  return buildScreen(
+    { category: (state && state.category) || "all" },
+    installed
+  );
 }
 
 export async function screenEvent(ctx) {
